@@ -1,11 +1,9 @@
-/* Задача №1:
-Вычислить n-ое треугольного число (сумма чисел от 1 до n)
- */
-
 import java.util.Scanner;
 
 public class Task01 {
-
+    /* Задача №1:
+    Вычислить n-ое треугольного число (сумма чисел от 1 до n)
+     */
 
     public static void main(String[] args) {
         int ordNumber = getUserNumber();
@@ -15,7 +13,7 @@ public class Task01 {
 
 
     static int getUserNumber() {
-        System.out.println("Введите целое число:");
+        System.out.printf("Введите порядковый номер треугольного числа: ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
@@ -27,6 +25,6 @@ public class Task01 {
 
 
     static void showMemberOfSequence(int ordinalNumber, double member) {
-        System.out.printf("%d треугольное число – это %d", ordinalNumber, Math.round(member));
+        System.out.printf("%d-е треугольное число – это %.0f", ordinalNumber, member);
     }
 }

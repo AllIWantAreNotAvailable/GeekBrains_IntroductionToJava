@@ -1,10 +1,10 @@
-/* Задача №2:
-Вычислить n! (произведение чисел от 1 до n)
- */
-
 import java.util.Scanner;
 
 public class Task02 {
+    /* Задача №2:
+    Вычислить n! (произведение чисел от 1 до n)
+    */
+
     public static void main(String[] args) {
         int inputtedNumber = getUserNumber();
         int factorial = getFactorial(inputtedNumber);
@@ -13,7 +13,7 @@ public class Task02 {
 
 
     static int getUserNumber() {
-        System.out.println("Введите целое число:");
+        System.out.printf("Введите число для вычисления факториала: ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }

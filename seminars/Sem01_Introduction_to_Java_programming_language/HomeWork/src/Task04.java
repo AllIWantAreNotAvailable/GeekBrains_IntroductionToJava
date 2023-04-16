@@ -1,10 +1,10 @@
-/* Задача №4:
-Реализовать простой калькулятор (введите первое число, введите второе число, введите требуемую операцию, ответ)
- */
-
 import java.util.Scanner;
 
 public class Task04 {
+    /* Задача №4:
+    Реализовать простой калькулятор (введите первое число, введите второе число, введите требуемую операцию, ответ)
+     */
+
     public static void main(String[] args) {
         Scanner operandScanner = new Scanner(System.in);
         Scanner operationScanner = new Scanner(System.in);

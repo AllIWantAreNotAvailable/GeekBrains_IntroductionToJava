@@ -1,11 +1,11 @@
-/* Задача №3:
-Вывести все простые числа от 1 до 1000 (числа, которые делятся только на 1 и на себя без остатка)
- */
-
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Task03 {
+    /* Задача №3:
+    Вывести все простые числа от 1 до 1000 (числа, которые делятся только на 1 и на себя без остатка)
+     */
+
     public static void main(String[] args) {
         int inputtedNumber = getUserNumber();
         int[] arraySimples = getSimples(inputtedNumber);
@@ -14,7 +14,7 @@ public class Task03 {
 
 
     static int getUserNumber() {
-        System.out.println("Введите целое число:");
+        System.out.printf("Укажите границу поиска простых чисел: ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
@@ -46,7 +46,8 @@ public class Task03 {
     }
 
     static void showSimples(int upperBound, int[] simples) {
-        System.out.printf("Простые числа в диапазоне до %s: %s",
-                upperBound, simples.length != 0 ? Arrays.toString(simples) : "отсутствуют");
+        String choice = simples.length != 0 ? Arrays.toString(simples) : "отсутствуют";
+        String prettyTextFormat = String.format("Простые числа в диапазоне до %s: %s", upperBound, choice);
+        System.out.println(prettyTextFormat);
     }
 }
