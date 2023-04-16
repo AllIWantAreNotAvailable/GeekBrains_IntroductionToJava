@@ -43,17 +43,13 @@ public class TaskStar01 {
             // Заменяем пропущенную цифру на очередную из массива и преобразуем к числу:
             CharSequence toLeft = Integer.toString(digitOfLeft);
             int tempLeft = Integer.parseInt(left.replace(from, toLeft));
-            // Находим разницу результата выражения и очередного варианта левого операнда выражения:
-            int difference = result - tempLeft;
-            // Сравниваем попозиционно "очередную разницу" с правым операндом, для этого подставим в разницу символ
+            // Находим разницу результата выражения и очередного варианта левого операнда выражения. Сравниваем
+            // попозиционно "очередную разницу" с правым операндом, для этого подставим в разницу символ
             // пропущенной цифры '?' на соответсвующую позицию:
-            String temp = Integer.toString(difference);
-            int missingIndex = right.indexOf('?');
-            if (temp.replace(temp.charAt(missingIndex), '?').equals(right)) {
+            String temp = Integer.toString(result - tempLeft);
+            if (temp.replace(temp.charAt(right.indexOf('?')), '?').equals(right)) {
                 // Если все символы кроме пропущенной цифры совпали, то возвращаем результат работы:
-                return String.format("%d + %d = %d", tempLeft, difference, result);
-            } else if (difference == Integer.parseInt(right)) {
-                return String.format("%d + %d = %d", tempLeft, difference, result);
+                return String.format("%d + %s = %d", tempLeft, temp, result);
             }
         }
         // Если не удалось найти пропущенные цифры, сообщаем об этом
