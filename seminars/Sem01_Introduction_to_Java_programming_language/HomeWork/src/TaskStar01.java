@@ -8,6 +8,7 @@ public class TaskStar01 {
     решение или сообщить, что его нет.
      */
 
+
     public static void main(String[] args) {
         // Получаем шаблон выражения пользователя и создаем строку формата:
         String usersExpression = getExpression();
@@ -33,11 +34,8 @@ public class TaskStar01 {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
-    // 5? + 1?3 = 246
-    // 246
-    //  5?
-    // 1?3
-    //  93
+
+
     static String getReconstructedExpression(String leftOperand, String rightOperand, String expressionResult){
 
         // Индексы пропущенных цифр:
@@ -66,7 +64,7 @@ public class TaskStar01 {
             resultLeft = Integer.toString(tempLeft + missingDigit);
             resultRight = Integer.toString(tempRight + missingDigit);
         }
-
-        return String.format("%s + %s = %s", resultLeft, resultRight, expressionResult);
+        boolean flag = Integer.parseInt(resultLeft) + Integer.parseInt(resultRight) == Integer.parseInt(expressionResult);
+        return  flag ? String.format("%s + %s = %s", resultLeft, resultRight, expressionResult) : "Не удалось восстановить уравнение ;(";
     }
 }

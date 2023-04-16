@@ -33,9 +33,6 @@ public class Task04 {
             }
             default -> System.out.println("Такой операции нет ;(");
         }
-
-
-        System.out.println();
     }
 
     private static String getOperation(Scanner operationScanner, double first_operand, double second_operand) {
