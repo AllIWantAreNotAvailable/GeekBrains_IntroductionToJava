@@ -8,63 +8,55 @@ public class TaskStar01 {
     решение или сообщить, что его нет.
      */
 
-
     public static void main(String[] args) {
-        // Получаем шаблон выражения пользователя и создаем строку формата:
-        String usersExpression = getExpression();
-
-        // Делим выражение на операнды с операцией и результат:
-        String[] slittedEquation = usersExpression.split(" = ");
-        String stringOperandsAndOperation = slittedEquation[0].trim();
-        String resultOfUsersExpression = slittedEquation[1].trim();
-
-        // Разбиваем операнды с операцией на массив подстрок и преобразуем операнды к целому числу:
-        String[] arrayOperands = stringOperandsAndOperation.split(" ");
-        String leftOperand = arrayOperands[0].trim();
-        String rightOperand = arrayOperands[2].trim();
-
-        // Восстанавливаем выражение:
-        String reconstructedExpression = getReconstructedExpression(leftOperand, rightOperand, resultOfUsersExpression);
-        System.out.println(reconstructedExpression);
+        String expression = getUserExpression();
+        String reconstructExpression = getReconstructedExpression(expression);
+        System.out.println(reconstructExpression);
     }
 
+    static String getUserExpression() {
+        StringBuilder prettyInvitationText = new StringBuilder();
+        prettyInvitationText.append("Введите уравнение вида: q + w = e; при этом q, w, e >= 0.");
+        prettyInvitationText.append("Некоторые цифры могут быть заменены знаком вопроса (2? + ?5 = 69)");
 
-    static String getExpression() {
-        System.out.printf("Введите уравнение следующего типа: 2? + ?5 = 69; ?4 + ?5 = 69.\n>>> ");
         Scanner scanner = new Scanner(System.in);
+        System.out.printf("%s\n>>> ", prettyInvitationText);
         return scanner.nextLine();
     }
 
+    static String getReconstructedExpression(String expression) {
+        int middleOf = expression.indexOf('+');
+        int endOf = expression.indexOf('=');
 
-    static String getReconstructedExpression(String leftOperand, String rightOperand, String expressionResult){
+        String leftOperandString = expression.substring(0, middleOf).trim();
+        String rightOperandString = expression.substring(middleOf + 1, endOf).trim();
+        String resultOfExpressionString = expression.substring(endOf + 1).trim();
+        int resultOfExpression = Integer.parseInt(resultOfExpressionString);
 
-        // Индексы пропущенных цифр:
-        int leftMissingIndex = leftOperand.indexOf('?');
-        int rightMissingIndex = rightOperand.indexOf('?');
+        return reconstruction(leftOperandString, rightOperandString, resultOfExpression);
+    }
 
-        // Временные переменные для промежуточных результатов:
-        int tempInteger = Integer.parseInt(expressionResult);
-        int tempLeft = Integer.parseInt(leftOperand.replace(leftOperand.charAt(leftMissingIndex), '0'));
-        int tempRight = Integer.parseInt(rightOperand.replace(rightOperand.charAt(rightMissingIndex), '0'));
-        tempInteger -= (tempLeft + tempRight);
-
-        // Восстанавливаем операнды выражения:
-        String difference = Integer.toString(tempInteger);
-        String resultLeft = null;
-        String resultRight = null;
-        if (leftMissingIndex != rightMissingIndex) {
-            int powOfTen = leftOperand.length() - leftMissingIndex - 1;
-            int digit = (int) Math.pow(10.0, (double) powOfTen);
-            resultLeft = Integer.toString(tempLeft + tempInteger / digit % 10 * digit);
-            powOfTen = rightOperand.length() - rightMissingIndex - 1;
-            digit = (int) Math.pow(10.0, (double) powOfTen);
-            resultRight = Integer.toString(tempRight + tempInteger / digit % 10 * digit);
-        } else {
-            int missingDigit = Integer.parseInt(difference) >> 1;
-            resultLeft = Integer.toString(tempLeft + missingDigit);
-            resultRight = Integer.toString(tempRight + missingDigit);
+    static String reconstruction(String left, String right, int result) {
+        int[] digits = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+        CharSequence from = "?";
+        for (int digitOfLeft : digits) {
+            // Заменяем пропущенную цифру на очередную из массива и преобразуем к числу:
+            CharSequence toLeft = Integer.toString(digitOfLeft);
+            int tempLeft = Integer.parseInt(left.replace(from, toLeft));
+            // Находим разницу результата выражения и очередного варианта левого операнда выражения:
+            int difference = result - tempLeft;
+            // Сравниваем попозиционно "очередную разницу" с правым операндом, для этого подставим в разницу символ
+            // пропущенной цифры '?' на соответсвующую позицию:
+            String temp = Integer.toString(difference);
+            int missingIndex = right.indexOf('?');
+            if (temp.replace(temp.charAt(missingIndex), '?').equals(right)) {
+                // Если все символы кроме пропущенной цифры совпали, то возвращаем результат работы:
+                return String.format("%d + %d = %d", tempLeft, difference, result);
+            } else if (difference == Integer.parseInt(right)) {
+                return String.format("%d + %d = %d", tempLeft, difference, result);
+            }
         }
-        boolean flag = Integer.parseInt(resultLeft) + Integer.parseInt(resultRight) == Integer.parseInt(expressionResult);
-        return  flag ? String.format("%s + %s = %s", resultLeft, resultRight, expressionResult) : "Не удалось восстановить уравнение ;(";
+        // Если не удалось найти пропущенные цифры, сообщаем об этом
+        return String.format("Не удалось восстановить уравнение: %s + %s = %d", left, right, result);
     }
 }
