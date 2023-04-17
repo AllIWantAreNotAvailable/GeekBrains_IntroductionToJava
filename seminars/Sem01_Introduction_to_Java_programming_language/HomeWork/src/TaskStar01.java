@@ -47,9 +47,12 @@ public class TaskStar01 {
             // попозиционно "очередную разницу" с правым операндом, для этого подставим в разницу символ
             // пропущенной цифры '?' на соответсвующую позицию:
             String temp = Integer.toString(result - tempLeft);
-            if (temp.replace(temp.charAt(right.indexOf('?')), '?').equals(right)) {
+            int missingIndex = right.indexOf('?');
+            if (missingIndex != -1 && temp.replace(temp.charAt(missingIndex), '?').equals(right)) {
                 // Если все символы кроме пропущенной цифры совпали, то возвращаем результат работы:
                 return String.format("%d + %s = %d", tempLeft, temp, result);
+            } else if (temp.equals(right)) {
+                return String.format("%s + %s = %d", left, temp, result);
             }
         }
         // Если не удалось найти пропущенные цифры, сообщаем об этом
