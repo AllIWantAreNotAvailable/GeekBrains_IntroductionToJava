@@ -1,6 +1,6 @@
-# [Задача №1]():
+# [Задача №1](https://github.com/AllIWantIsNotAvailable/GeekBrains_IntroductionToJava/blob/main/seminars/Sem05_Data_Storage_and_Processing_Part_2/HomeWork/src/Task01.java):
 > ## Комментарии к задаче:
-> - [Ссылка на описание класса]();
+> - [Ссылка на описание класса](https://github.com/AllIWantIsNotAvailable/GeekBrains_IntroductionToJava/blob/main/seminars/Sem05_Data_Storage_and_Processing_Part_2/HomeWork/src/Classes/PhoneBook.java);
 > - Реализовали функцию добавления, метод имеет 3 перегрузки:
 >   1) по полному имени и телефону;
 >   2) по имени, фамилии и телефону;
@@ -9,9 +9,9 @@
 >
 
 
-# [Задача №2]():
+# [Задача №2](https://github.com/AllIWantIsNotAvailable/GeekBrains_IntroductionToJava/blob/main/seminars/Sem05_Data_Storage_and_Processing_Part_2/HomeWork/src/Task02.java):
 > ## Комментарии к задаче:
-> - [Ссылка на описание класса]();
+> - [Ссылка на описание класса](https://github.com/AllIWantIsNotAvailable/GeekBrains_IntroductionToJava/blob/main/seminars/Sem05_Data_Storage_and_Processing_Part_2/HomeWork/src/Classes/CorporateHandbook.java);
 > - реализовали добавление элементов;
 > - переопределили метод toString() и сосредоточили в нем логику вывода популярных имен;
 > - логика простая:
@@ -28,13 +28,13 @@
 >
 
 
-# [Задача со звездочкой №3]():
+# [Задача со звездочкой №3](https://github.com/AllIWantIsNotAvailable/GeekBrains_IntroductionToJava/blob/main/seminars/Sem05_Data_Storage_and_Processing_Part_2/HomeWork/src/TaskStar03.java):
 > ## Комментарии к задаче:
-> -
+> На данный момент решение задачи не представлено.
 >
 
 
-# [Задача со звездочкой №4]():
+# [Задача со звездочкой №4](https://github.com/AllIWantIsNotAvailable/GeekBrains_IntroductionToJava/blob/main/seminars/Sem05_Data_Storage_and_Processing_Part_2/HomeWork/src/TaskStar04.java):
 > ## Комментарии к задаче:
-> -
+> На данный момент решение задачи не представлено.
 > 
