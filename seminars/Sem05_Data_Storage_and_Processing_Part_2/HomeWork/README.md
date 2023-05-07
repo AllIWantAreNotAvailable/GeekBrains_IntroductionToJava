@@ -30,7 +30,16 @@
 
 # [Задача со звездочкой №3](https://github.com/AllIWantIsNotAvailable/GeekBrains_IntroductionToJava/blob/main/seminars/Sem05_Data_Storage_and_Processing_Part_2/HomeWork/src/TaskStar03.java):
 > ## Комментарии к задаче:
-> На данный момент решение задачи не представлено.
+> - [Ссылка на описание класса](https://github.com/AllIWantIsNotAvailable/GeekBrains_IntroductionToJava/blob/main/seminars/Sem05_Data_Storage_and_Processing_Part_2/HomeWork/src/Classes/Heap.java)
+> - Реализован класс куча на основе Integer[] (условие кучи: родитель меньше или равен дочернему узлу) со следующими методами:
+>   1) public isEmpty() – проверяет, содержится ли хоть 1 элемент в куче;
+>   2) public insert() – добавляет элемент в кучу и просеивает вверх;
+>   3) public getMin() - возвращает минимальный элемент не удаляя его;
+>   4) public removeMin() – удаляет минимальный элемент и возвращает его значение;
+>   5) private sift_up() – просеивает элемент вверх;
+>   6) private sift_down() – просеивает элемент вниз;
+>   7) private swap() – меняет элементы местами;
+>   8) public heapSort() – сортирует переданный массив (по убыванию или по возрастанию, в зависимости от переданного аргумента).
 >
 
 
