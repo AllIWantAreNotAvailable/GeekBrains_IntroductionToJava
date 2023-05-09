@@ -6,18 +6,21 @@ public class Task01 {
      */
     public static void main(String[] args) {
         PhoneBook myPhoneBook = new PhoneBook();
-        myPhoneBook.add("Иван", "12345678901");
-        myPhoneBook.add("Иван", "11234567890");
-        myPhoneBook.add("Иван", "01123456789");
-        myPhoneBook.add("Иван", "90112345678");
-        myPhoneBook.add("Иван", "Иванов", "12345678901");
-        myPhoneBook.add("Иван", "Иванов", "11234567890");
-        myPhoneBook.add("Иван", "Иванов", "01123456789");
-        myPhoneBook.add("Иван", "Иванов", "90112345678");
-        myPhoneBook.add("Иван", "Иванов", "Иванович", "12345678901");
-        myPhoneBook.add("Иван", "Иванов", "Иванович", "11234567890");
-        myPhoneBook.add("Иван", "Иванов", "Иванович", "01123456789");
-        myPhoneBook.add("Иван", "Иванов", "Иванович", "90112345678");
+        myPhoneBook.add("Иван", "+7 (999) 999-99-99");
+        myPhoneBook.add("Иван", "+7 (999) 999-99-98");
+        myPhoneBook.add("Иван", "+7 (999) 999-99-97");
+        myPhoneBook.add("Иван", "+7 (999) 999-99-96");
+        myPhoneBook.add("Петр", "Петров", "+7 (999) 999-99-95");
+        myPhoneBook.add("Петр", "Петров", "+7 (999) 999-99-94");
+        myPhoneBook.add("Петр", "Петров", "+7 (999) 999-99-93");
+        myPhoneBook.add("Петр", "Петров", "+7 (999) 999-99-92");
+        myPhoneBook.add("Иван", "Иванов", "Иванович", "+7 (999) 999-99-91");
+        myPhoneBook.add("Иван", "Иванов", "Иванович", "+7 (999) 999-99-90");
+        myPhoneBook.add("Иван", "Иванов", "Иванович", "+7 (999) 999-99-89");
+        myPhoneBook.add("Иван", "Иванов", "Иванович", "+7 (999) 999-99-87");
+        myPhoneBook.add("+7 (999) 999-99-86");
+        myPhoneBook.add("+7 (999) 999-99-85");
+        myPhoneBook.add("+7 (999) 999-99-84");
         System.out.println(myPhoneBook);
     }
 }
