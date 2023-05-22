@@ -76,6 +76,10 @@ public class RndLaptopList {
         }
     }
 
+    public List<Laptop> getRandomList() {
+        return randomList;
+    }
+
     private Integer getMaxLength() {
         return cpus.size() *  gpus.size() * rams.size() * roms.size() * oss.size();
     }
@@ -337,7 +341,7 @@ public class RndLaptopList {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         int increment = 0;
-        for (Laptop laptop : randomList) {
+        for (Laptop laptop : this.randomList) {
             stringBuilder.append(String.format("%d) ", ++increment))
                          .append(laptop)
                          .append("\n");

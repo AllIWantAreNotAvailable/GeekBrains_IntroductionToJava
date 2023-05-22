@@ -1,7 +1,5 @@
 import Classes.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Main {
@@ -28,9 +26,7 @@ public class Main {
      */
 
     public static void main(String[] args) {
-        RndLaptopList randomList = new RndLaptopList(20,false);
-        System.out.println(randomList);
+        UserDialog userDialog = new UserDialog();
+        userDialog.startDialog();
     }
-
-
 }
