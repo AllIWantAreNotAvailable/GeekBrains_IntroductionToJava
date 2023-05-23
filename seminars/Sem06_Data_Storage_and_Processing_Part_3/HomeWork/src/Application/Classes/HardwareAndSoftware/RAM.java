@@ -1,4 +1,4 @@
-package Classes;
+package Application.Classes.HardwareAndSoftware;
 
 import java.util.Objects;
 
@@ -6,12 +6,15 @@ public class RAM {
     private Integer density;
     private Integer speed;
     private String memoryType;
-    // TODO: 20.05.2023 Добавить стоимость
 
     public RAM(Integer density, Integer speed, String memoryType) {
         this.density = density;
         this.speed = speed;
         this.memoryType = memoryType;
+    }
+
+    public RAM getCopy() {
+        return new RAM(this.density, this.speed, this.memoryType);
     }
 
     public Integer getDensity() {
@@ -36,6 +39,20 @@ public class RAM {
 
     public void setMemoryType(String memoryType) {
         this.memoryType = memoryType;
+    }
+
+    public boolean moreOrEqual(Object object){
+        if (this == object) return true;
+        if (!(object instanceof RAM ram)) return false;
+        return this.getDensity() >= ram.getDensity()
+                && this.getSpeed() >= ram.getSpeed();
+    }
+
+    public boolean lessOrEqual(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof RAM ram)) return false;
+        return this.getDensity() <= ram.getDensity()
+                && this.getSpeed() <= ram.getSpeed();
     }
 
     @Override

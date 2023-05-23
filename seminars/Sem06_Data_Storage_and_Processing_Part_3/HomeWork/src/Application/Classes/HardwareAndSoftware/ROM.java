@@ -1,4 +1,4 @@
-package Classes;
+package Application.Classes.HardwareAndSoftware;
 
 import java.util.Objects;
 
@@ -6,12 +6,15 @@ public class ROM {
     private Integer density;
     private String driveInterface;
     private String driveType;
-    // TODO: 20.05.2023 Добавить стоимость
 
     public ROM(Integer density, String driveInterface, String driveType) {
         this.density = density;
         this.driveInterface = driveInterface;
         this.driveType = driveType;
+    }
+
+    public ROM getCopy() {
+        return new ROM(this.density, this.driveInterface, this.driveType);
     }
 
     public Integer getDensity() {
@@ -36,6 +39,18 @@ public class ROM {
 
     public void setDriveType(String driveType) {
         this.driveType = driveType;
+    }
+
+    public boolean moreOrEqual(Object object){
+        if (this == object) return true;
+        if (!(object instanceof ROM rom)) return false;
+        return this.getDensity() >= rom.getDensity();
+    }
+
+    public boolean lessOrEqual(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof ROM rom)) return false;
+        return this.getDensity() <= rom.getDensity();
     }
 
     @Override

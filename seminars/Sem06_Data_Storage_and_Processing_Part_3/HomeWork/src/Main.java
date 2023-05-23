@@ -1,11 +1,9 @@
-import Classes.*;
-
-
+import Application.UI.CatalogueHandlers;
+import Application.UI.UI;
 
 public class Main {
     /*
     Подумать над структурой класса Ноутбук для магазина техники - выделить поля и методы. Реализовать в java.
-    // TODO: 20.05.2023 Добавить стоимость
 
     Создать множество ноутбуков.
 
@@ -26,7 +24,7 @@ public class Main {
      */
 
     public static void main(String[] args) {
-        UserDialog userDialog = new UserDialog();
-        userDialog.startDialog();
+        UI ui = new UI();
+        ui.handler();
     }
 }

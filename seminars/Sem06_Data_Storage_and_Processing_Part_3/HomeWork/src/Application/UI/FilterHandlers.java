@@ -1,12 +1,12 @@
-package Classes;
+package Application.UI;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class FilterMenu {
+public class FilterHandlers {
     private Map<Integer, String> menu;
 
-    public FilterMenu() {
+    public FilterHandlers() {
         this.menu = new HashMap<>();
         this.menu.put(1, "Filter by CPU");
         this.menu.put(2, "Filter by GPU");

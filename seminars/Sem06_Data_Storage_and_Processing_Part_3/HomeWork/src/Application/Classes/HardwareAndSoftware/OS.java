@@ -1,15 +1,18 @@
-package Classes;
+package Application.Classes.HardwareAndSoftware;
 
 import java.util.Objects;
 
 public class OS {
     private String manufacture;
     private String osName;
-    // TODO: 20.05.2023 Добавить стоимость
 
     public OS(String manufacture, String osName) {
         this.manufacture = manufacture;
         this.osName = osName;
+    }
+
+    public OS getCopy() {
+        return new OS(this.manufacture, this.osName);
     }
 
     public String getManufacture() {

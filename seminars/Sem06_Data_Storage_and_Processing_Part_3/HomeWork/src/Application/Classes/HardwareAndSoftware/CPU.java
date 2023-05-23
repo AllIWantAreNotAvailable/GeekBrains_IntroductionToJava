@@ -1,4 +1,4 @@
-package Classes;
+package Application.Classes.HardwareAndSoftware;
 
 import java.util.Objects;
 
@@ -7,18 +7,21 @@ public class CPU {
     private String model;
     private Integer totalCores;
     private Integer totalThreats;
-    private Double baseClock;
-    private Double boostClock;
-    // TODO: 20.05.2023 Добавить стоимость
+    private Integer baseClock;
+    private Integer boostClock;
 
     public CPU(String manufacture, String model, Integer totalCores,
-               Integer totalThreats, Double baseClock, Double boostClock) {
+               Integer totalThreats, Integer baseClock, Integer boostClock) {
         this.manufacture = manufacture;
         this.model = model;
         this.totalCores = totalCores;
         this.totalThreats = totalThreats;
         this.baseClock = baseClock;
         this.boostClock = boostClock;
+    }
+
+    public CPU getCopy() {
+        return new CPU(this.manufacture, this.model, this.totalCores, this.totalThreats, this.baseClock, this.boostClock);
     }
 
     public String getManufacture() {
@@ -53,20 +56,38 @@ public class CPU {
         this.totalThreats = totalThreats;
     }
 
-    public Double getBaseClock() {
+    public Integer getBaseClock() {
         return baseClock;
     }
 
-    public void setBaseClock(Double baseClock) {
+    public void setBaseClock(Integer baseClock) {
         this.baseClock = baseClock;
     }
 
-    public Double getBoostClock() {
+    public Integer getBoostClock() {
         return boostClock;
     }
 
-    public void setBoostClock(Double boostClock) {
+    public void setBoostClock(Integer boostClock) {
         this.boostClock = boostClock;
+    }
+
+    public boolean moreOrEqual(Object object){
+        if (this == object) return true;
+        if (!(object instanceof CPU cpu)) return false;
+        return  this.getTotalCores() >= cpu.getTotalCores()
+                && this.getTotalThreats() >= cpu.getTotalThreats()
+                && this.getBaseClock() >= cpu.getBaseClock()
+                && this.getBoostClock() >= cpu.getBoostClock();
+    }
+
+    public boolean lessOrEqual(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof CPU cpu)) return false;
+        return  this.getTotalCores() <= cpu.getTotalCores()
+                && this.getTotalThreats() <= cpu.getTotalThreats()
+                && this.getBaseClock() <= cpu.getBaseClock()
+                && this.getBoostClock() <= cpu.getBoostClock();
     }
 
     @Override
@@ -94,7 +115,7 @@ public class CPU {
 
     @Override
     public String toString() {
-        return String.format("%s %s %d ядер, %d потоков, %.2f GHz, boost %.2f GHz",
+        return String.format("%s %s %d ядер, %d потоков, %d Hz, boost %d Hz",
                              manufacture, model, totalCores, totalThreats, baseClock, boostClock);
     }
 }

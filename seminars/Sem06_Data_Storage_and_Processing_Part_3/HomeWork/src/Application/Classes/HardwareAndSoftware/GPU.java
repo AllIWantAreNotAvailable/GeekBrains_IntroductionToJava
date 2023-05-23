@@ -1,21 +1,24 @@
-package Classes;
+package Application.Classes.HardwareAndSoftware;
 
 import java.util.Objects;
 
 public class GPU {
     private String manufacture;
     private String model;
-    private Double baseClock;
+    private Integer baseClock;
     private Integer maxMemorySize;
     private String memoryType;
-    // TODO: 20.05.2023 Добавить стоимость
 
-    public GPU(String manufacture, String model, Double baseClock, Integer maxMemorySize, String memoryType) {
+    public GPU(String manufacture, String model, Integer baseClock, Integer maxMemorySize, String memoryType) {
         this.manufacture = manufacture;
         this.model = model;
         this.baseClock = baseClock;
         this.maxMemorySize = maxMemorySize;
         this.memoryType = memoryType;
+    }
+
+    public GPU getCopy() {
+        return new GPU(this.manufacture, this.model, this.baseClock, this.maxMemorySize, this.memoryType);
     }
 
     public String getManufacture() {
@@ -34,11 +37,11 @@ public class GPU {
         this.model = model;
     }
 
-    public Double getBaseClock() {
+    public Integer getBaseClock() {
         return baseClock;
     }
 
-    public void setBaseClock(Double baseClock) {
+    public void setBaseClock(Integer baseClock) {
         this.baseClock = baseClock;
     }
 
@@ -56,6 +59,20 @@ public class GPU {
 
     public void setMemoryType(String memoryType) {
         this.memoryType = memoryType;
+    }
+
+    public boolean moreOrEqual(Object object){
+        if (this == object) return true;
+        if (!(object instanceof GPU gpu)) return false;
+        return this.getBaseClock() >= gpu.getBaseClock()
+                && this.getMaxMemorySize() >= gpu.getMaxMemorySize();
+    }
+
+    public boolean lessOrEqual(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof GPU gpu)) return false;
+        return this.getBaseClock() <= gpu.getBaseClock()
+                && this.getMaxMemorySize() <= gpu.getMaxMemorySize();
     }
 
     @Override
@@ -81,7 +98,7 @@ public class GPU {
 
     @Override
     public String toString() {
-        return String.format("%s %s, %.2f GHz, %d Gb, %s",
+        return String.format("%s %s, %d Hz, %d Gb, %s",
                 manufacture, model, baseClock, maxMemorySize, memoryType);
     }
 }

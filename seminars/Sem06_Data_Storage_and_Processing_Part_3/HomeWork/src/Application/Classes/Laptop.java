@@ -1,4 +1,6 @@
-package Classes;
+package Application.Classes;
+
+import Application.Classes.HardwareAndSoftware.*;
 
 import java.util.Objects;
 
@@ -8,7 +10,6 @@ public class Laptop {
     private RAM ram;
     private ROM rom;
     private OS os;
-    // TODO: 20.05.2023 Добавить стоимость
 
     public Laptop(CPU centralProcessingUnit, GPU graphicsProcessingUnit, RAM randomAccessMemory, ROM readOnlyMemory, OS operatingSystemSoftware) {
         this.cpu = centralProcessingUnit;
@@ -16,6 +17,10 @@ public class Laptop {
         this.ram = randomAccessMemory;
         this.rom = readOnlyMemory;
         os = operatingSystemSoftware;
+    }
+
+    public Laptop getCopy() {
+        return new Laptop(this.cpu.getCopy(), this.gpu.getCopy(), this.ram.getCopy(), this.rom.getCopy(), this.os.getCopy());
     }
 
     public CPU getCpu() {
@@ -56,6 +61,24 @@ public class Laptop {
 
     public void setOs(OS os) {
         this.os = os;
+    }
+
+    public boolean moreOrEqual(Object object){
+        if (this == object) return true;
+        if (!(object instanceof Laptop laptop)) return false;
+        return this.getCpu().moreOrEqual(laptop.getCpu())
+                && this.getGpu().moreOrEqual(laptop.getGpu())
+                && this.getRam().moreOrEqual(laptop.getRam())
+                && this.getRom().moreOrEqual(laptop.getRom());
+    }
+
+    public boolean lessOrEqual(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof Laptop laptop)) return false;
+        return this.getCpu().lessOrEqual(laptop.getCpu())
+                && this.getGpu().lessOrEqual(laptop.getGpu())
+                && this.getRam().lessOrEqual(laptop.getRam())
+                && this.getRom().lessOrEqual(laptop.getRom());
     }
 
     @Override
