@@ -9,8 +9,8 @@ public class Catalogue {
     private Map<Laptop, Integer> catalogue;
     private DataBase dataBase;
 
-    public Catalogue() {
-        this.dataBase = new DataBase();
+    public Catalogue(Integer dataBaseSize) {
+        this.dataBase = new DataBase(dataBaseSize);
         this.catalogue = this.dataBase.getSelection();
     }
 
@@ -21,6 +21,7 @@ public class Catalogue {
     public Set<Laptop> getArticles() {
         return this.catalogue.keySet();
     }
+
     public void setUpDataFiltering(Map<String, Integer> filter) {
 
         // maxFilter

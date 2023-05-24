@@ -3,8 +3,7 @@ package Application.BusinessLogic;
 import Application.Classes.HardwareAndSoftware.*;
 import Application.Classes.Laptop;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class DataBase {
     private Map<Laptop, Integer> selection;
@@ -21,36 +20,48 @@ public class DataBase {
     private Laptop MIN_LAPTOP;
     private Laptop MAX_LAPTOP;
 
-    public DataBase() {
+    public DataBase(Integer dataBaseSize) {
         this.dataBase = new HashMap<>();
         this.selection = new HashMap<>();
 
-        for (Map.Entry<RAM, Integer> ram :
-                getRAMs().entrySet()) {
-            for (Map.Entry<ROM, Integer> rom :
-                    getROMs().entrySet()) {
-                for (Map.Entry<OS, Integer> os :
-                        getOS().entrySet()) {
-                    for (Map.Entry<CPU, Integer> cpu :
-                            getCPUs().entrySet()) {
-                        for (Map.Entry<GPU, Integer> gpu :
-                                getGPUs().entrySet()) {
-                            Laptop laptop = new Laptop(cpu.getKey(),
-                                    gpu.getKey(),
-                                    ram.getKey(),
-                                    rom.getKey(),
-                                    os.getKey());
-                            Integer price = cpu.getValue() + gpu.getValue() + ram.getValue() + rom.getValue() + os.getValue();
-                            this.dataBase.put(laptop, price);
-                            this.selection.put(laptop, price);
-                        }
-                    }
-                }
-            }
-        }
+        this.fillDataBase(dataBaseSize);
 
         this.MAX_LAPTOP = new Laptop(this.MAX_CPU, this.MAX_GPU, this.MAX_RAM, this.MAX_ROM, new OS("MAX", "SPEC"));
         this.MIN_LAPTOP = new Laptop(this.MIN_CPU, this.MIN_GPU, this.MIN_RAM, this.MIN_ROM, new OS("MIN", "SPEC"));
+    }
+
+    private void fillDataBase(Integer dbSize) {
+        Map<CPU, Integer> cpus = getCPUs();
+        List<CPU> cpuSet = new ArrayList<>(cpus.keySet());
+
+        Map<GPU, Integer> gpus = getGPUs();
+        List<GPU> gpuSet = new ArrayList<>(gpus.keySet());
+
+        Map<RAM, Integer> rams = getRAMs();
+        List<RAM> ramSet = new ArrayList<>(rams.keySet());
+
+        Map<ROM, Integer> roms = getROMs();
+        List<ROM> romSet = new ArrayList<>(roms.keySet());
+
+        Map<OS, Integer> oss = getOS();
+        List<OS> osSet = new ArrayList<>(oss.keySet());
+
+        Random random = new Random();
+        while (this.dataBase.size() < dbSize) {
+            CPU tempCPU = cpuSet.get(random.nextInt(cpuSet.size()));
+            GPU tempGPU = gpuSet.get(random.nextInt(gpuSet.size()));
+            RAM tempRAM = ramSet.get(random.nextInt(ramSet.size()));
+            ROM tempROM = romSet.get(random.nextInt(romSet.size()));
+            OS tempOS = osSet.get(random.nextInt(osSet.size()));
+            Laptop tempLaptop = new Laptop(tempCPU, tempGPU, tempRAM, tempROM, tempOS);
+            if (this.dataBase.containsKey(tempLaptop)) {
+                continue;
+            }
+            this.dataBase.put(tempLaptop,
+                    cpus.get(tempCPU) + gpus.get(tempGPU) + rams.get(tempRAM) + roms.get(tempROM) + oss.get(tempOS));
+            this.selection.put(tempLaptop,
+                    cpus.get(tempCPU) + gpus.get(tempGPU) + rams.get(tempRAM) + roms.get(tempROM) + oss.get(tempOS));
+        }
     }
 
     private Map<CPU, Integer> getCPUs() {

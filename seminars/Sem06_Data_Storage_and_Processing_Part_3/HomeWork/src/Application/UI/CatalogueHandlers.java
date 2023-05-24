@@ -8,21 +8,25 @@ import java.util.*;
 public class CatalogueHandlers {
     private Catalogue catalogue;
     private List<Laptop> articles;
-
+    private FilterHandlers filters;
     private Map<Laptop, Integer> currentPage;
     private Integer itemsAtATime;
     private Integer firstIndexOfPage;
     private Integer lastIndexOfPage;
     private Map<Integer, String> menu;
 
-    public CatalogueHandlers() {
-        this.catalogue = new Catalogue();
-        this.articles = new ArrayList<>(this.catalogue.getArticles());
+    public CatalogueHandlers(Integer dataBaseSize) {
+        this.catalogue = new Catalogue(dataBaseSize);
+        this.setArticles();
         this.itemsAtATime = 10;
 
 
         this.setMenu();
         this.setIndexesOfPage(0);
+    }
+
+    public void setArticles() {
+        this.articles = new ArrayList<>(this.catalogue.getArticles());
     }
 
     public Integer handler() {
@@ -46,24 +50,33 @@ public class CatalogueHandlers {
                 break;
             }
             case 3: {
+                if (this.filters == null) {
+                    this.filters = new FilterHandlers(this.catalogue);
+                }
+                exitCode = this.filters.handler();
+                this.setIndexesOfPage(0);
+                this.setArticles();
+                break;
+            }
+            case 4: {
                 this.setIndexesOfPage(this.firstIndexOfPage + this.itemsAtATime);
                 this.fillCurrentPage();
                 this.showCurrentPage();
                 exitCode = 100;
                 break;
             }
-            case 4: {
+            case 5: {
                 this.setIndexesOfPage(this.firstIndexOfPage - this.itemsAtATime);
                 this.fillCurrentPage();
                 this.showCurrentPage();
                 exitCode = 100;
                 break;
             }
-            case 5: {
+            case 6: {
                 exitCode = 205;
                 break;
             }
-            case 6: {
+            case 7: {
                 exitCode = 200;
                 break;
             }
@@ -78,10 +91,11 @@ public class CatalogueHandlers {
         this.menu = new HashMap<>();
         this.menu.put(1, "Set current page (...)");
         this.menu.put(2, String.format("Set number of items to show at a time (%d)", this.itemsAtATime));
-        this.menu.put(3, "Next page");
-        this.menu.put(4, "Previous page");
-        this.menu.put(5, "Go back");
-        this.menu.put(6, "Exit");
+        this.menu.put(3, "Filtering");
+        this.menu.put(4, "Next page");
+        this.menu.put(5, "Previous page");
+        this.menu.put(6, "Go back");
+        this.menu.put(7, "Exit");
     }
 
     private void showMenu() {

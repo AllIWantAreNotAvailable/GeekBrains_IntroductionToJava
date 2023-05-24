@@ -8,10 +8,12 @@ import java.util.Scanner;
 public class UI {
     private LinkedList<Object> stack;
     private Map<Integer, String> menu;
+    private Integer dataBaseSize;
 
     public UI() {
         this.stack = new LinkedList<>();
         this.stack.add(this);
+        this.dataBaseSize = 10_000;
         this.setMenu();
     }
 
@@ -25,11 +27,13 @@ public class UI {
                 System.out.printf("%s", "\n>>> ");
                 switch (scanner.nextInt()) {
                     case 1: {
-                        this.stack.add(new CatalogueHandlers());
+                        this.stack.add(new CatalogueHandlers(this.dataBaseSize));
                         responseCode = 101;
                         break;
                     }
                     case 2: {
+                        System.out.printf("\n%s:\n%s", "Specify the database size", ">>> ");
+                        this.dataBaseSize = scanner.nextInt();
                         break;
                     }
                     case 3: {
